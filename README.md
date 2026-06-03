@@ -1,1 +1,1 @@
-for debugs
+blue operation system compleate
