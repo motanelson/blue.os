@@ -20,6 +20,8 @@ bcc -x -i -L -Md echo.c -o echo.com
 bcc -x -i -L -Md printf.c -o printf.com
 bcc -x -i -L -Md reboot.c -o reboot.com
 bcc -x -i -L -Md pwd.c -o pwd.com
+bcc -x -i -L -Md clear.c -o clear.com
+
 cp *.c32 CD_root/isolinux/
 cp *.com CD_root/isolinux/
 genisoimage -o myos.iso -input-charset utf-8 -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4  -boot-info-table ./CD_root 
