@@ -16,6 +16,7 @@ bcc -c -Md libdos.c -o libdos.a
 bcc -x -i -L -Md intro.c -o intro.com
 bcc -x -i -L -Md cat.c -o cat.com
 bcc -x -i -L -Md ls.c -o ls.com
+bcc -x -i -L -Md echo.c -o echo.com
 cp *.c32 CD_root/isolinux/
 cp *.com CD_root/isolinux/
 genisoimage -o myos.iso -input-charset utf-8 -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4  -boot-info-table ./CD_root 
