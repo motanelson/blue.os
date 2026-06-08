@@ -1,9 +1,15 @@
 
 //bcc  -Md hello.c -o HELLO.COM
+//change this line if you computer is old an have 40 coluns
+//#define linesize 80
+
+#define linesize 80
+#define nlines 20
 
 #define varn 0xc080
 #define bufsize 8000
-
+int counter=0;
+int lines=0;
 char getss(s,i);
 char getcc();
 void sputs(cc);
@@ -36,7 +42,7 @@ int main()
                         sputc(13);
                         sputc(10);
                         t=1;
-                        n=filesizes(argv);
+                        n=filesizes();
                         sputc((char)n);
                         sputs("\r\n");
 
@@ -57,7 +63,7 @@ int main()
 
 			closes(f1);
 		
-	//systems("cmd.com");
+	//systems("cmd.com");	
 	return 0;
 	
 }
@@ -88,13 +94,49 @@ char getcc(){
     sputc(keys);
     return keys;
 }
-void sputs(cc)
+void sprints(cc)
 char *cc;
 {
 		int i=0;
 while(cc[i]!=0){
 		sputc(cc[i]);
 		i++;
+}
+}
+
+void sputs(cc)
+char *cc;
+{
+                
+		int i=0;
+                char n;
+                counter=0;
+                lines=0;
+                
+while(cc[i]!=0){
+                if (cc[i]==10){
+                    counter=0;
+                    lines=lines+1;
+                }
+		sputc(cc[i]);
+		i++;
+                counter=counter+1;
+                if (counter>=linesize-3){
+                    sputc(10);
+                    counter=0;
+                    lines++;
+                    
+                }
+                if (lines>nlines){
+                    sprints("press key to continue\r\n");
+                     n=getcc();
+                     lines=0;
+                     if (n==0x20 || n==13){
+                         ;
+                     }else{
+                         break;
+                     }
+                }
 }
 }
 void scopy(s1,s2)
