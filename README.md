@@ -1,1 +1,1 @@
-blue operation system compleate
+math solver
